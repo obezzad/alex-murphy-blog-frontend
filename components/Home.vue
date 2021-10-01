@@ -1,72 +1,74 @@
 <template>
-  <div class="lg:container w-full h-screen mx-auto p-4">
-    <!-- TODO: example-2 to something meaningful -->
-    <!-- TODO refactor to tailwind -->
-    <div class="w-full flex flex-wrap">
-      <div
-        v-for="(article, idx) in articles"
-        :key="article"
-        class="example-2 card flex-auto"
-        :class="[idx % 9 ? 'lg:w-1/4 md:1/4 w-full' : 'w-full']"
-      >
-        <!-- TODO handle no image -->
+  <div>
+    <div class="lg:container w-full h-screen mx-auto p-4">
+      <!-- TODO: example-2 to something meaningful -->
+      <!-- TODO refactor to tailwind -->
+      <div class="w-full flex flex-wrap">
         <div
-          class="wrapper"
-          :style="
-            'background-image: url(' +
-            baseURL +
-            article.coverImage.coverImage.url +
-            ');'
-          "
+          v-for="(article, idx) in articles"
+          :key="article.id"
+          class="example-2 card flex-auto"
+          :class="[idx % 9 ? 'lg:w-1/4 md:1/4 w-full' : 'w-full']"
         >
-          <div class="header">
-            <div class="date">
-              <span class="day">{{ getDay(article.published_at) }}</span>
-              <span class="month">{{ getMonth(article.published_at) }}</span>
-              <span class="year">{{ getYear(article.published_at) }}</span>
-            </div>
-            <ul class="menu-content">
-              <li>
-                <a href="#" class="fa fa-star-o"
-                  ><span>{{ article.rating }}</span></a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="data">
-            <div class="content bg-black bg-opacity-25">
-              <span v-if="article.category" class="category">{{
-                article.category.title
-              }}</span>
-              <h1 class="title text-lg">
-                <a href="#">{{ article.title }}</a>
-              </h1>
-              <p class="text text-xl">
-                {{ article.excerpt }}
-              </p>
-              <div class="mt-5">
-                <span
-                  v-for="tag in article.tags"
-                  :key="tag.title"
-                  class="
-                    inline-block
-                    bg-gray-200
-                    rounded-full
-                    px-3
-                    py-1
-                    text-sm
-                    font-semibold
-                    text-gray-700
-                    mr-2
-                    mb-2
-                    hover:bg-gray-700
-                    hover:text-gray-200
-                    cursor-default
-                  "
-                  >#{{ tag.title }}
-                </span>
+          <!-- TODO handle no image -->
+          <div
+            class="wrapper"
+            :style="
+              'background-image: url(' +
+              baseURL +
+              article.coverImage.coverImage.url +
+              ');'
+            "
+          >
+            <div class="header">
+              <div class="date">
+                <span class="day">{{ getDay(article.published_at) }}</span>
+                <span class="month">{{ getMonth(article.published_at) }}</span>
+                <span class="year">{{ getYear(article.published_at) }}</span>
               </div>
-              <a href="#" class="button">Read more</a>
+              <ul class="menu-content">
+                <li>
+                  <a href="#" class="fa fa-star-o"
+                    ><span>{{ article.rating }}</span></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="data">
+              <div class="content bg-black bg-opacity-25">
+                <span v-if="article.category" class="category">{{
+                  article.category.title
+                }}</span>
+                <h1 class="title text-lg">
+                  <a href="#">{{ article.title }}</a>
+                </h1>
+                <p class="text text-xl">
+                  {{ article.excerpt }}
+                </p>
+                <div class="mt-5">
+                  <span
+                    v-for="tag in article.tags"
+                    :key="tag.title"
+                    class="
+                      inline-block
+                      bg-gray-200
+                      rounded-full
+                      px-3
+                      py-1
+                      text-sm
+                      font-semibold
+                      text-gray-700
+                      mr-2
+                      mb-2
+                      hover:bg-gray-700
+                      hover:text-gray-200
+                      cursor-default
+                    "
+                    >#{{ tag.title }}
+                  </span>
+                </div>
+                <NuxtLink href="#" class="button" :to="'/blog/'+article.id">Read more</NuxtLink>
+              </div>
             </div>
           </div>
         </div>
@@ -94,7 +96,6 @@ const monthNames = [
 ]
 
 export default {
-  components: {},
   data() {
     return {
       articles: [],

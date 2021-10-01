@@ -1,0 +1,7 @@
+.modal-enter-active, .modal-leave-active {
+	transition: all 0.5s;
+}
+
+.modal-enter, .modal-leave-active {
+	opacity: 0;
+}
