@@ -152,7 +152,7 @@
   </section>
 </template>
 
-<script lang="ts">
+<script>
 import gql from 'graphql-tag'
 
 export default {

@@ -77,7 +77,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import gql from 'graphql-tag'
 
 const monthNames = [
@@ -103,13 +103,13 @@ export default {
     }
   },
   methods: {
-    getDay: (date: string) => {
+    getDay: (date) => {
       return new Date(date).getDay()
     },
-    getMonth: (date: string) => {
+    getMonth: (date) => {
       return monthNames[new Date(date).getMonth()]
     },
-    getYear: (date: string) => {
+    getYear: (date) => {
       return new Date(date).getFullYear()
     },
   },
